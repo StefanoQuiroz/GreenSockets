@@ -2,7 +2,7 @@ import React from 'react';
 import './HeroSection.scss';
 import { FiArrowRightCircle } from "react-icons/fi";
 import stefano from '../../images/stefano.jpg'
-import joaco from '../../images/joaco.jpeg'
+import joaco from '../../images/joaco.jpg'
 const HeroSection = () => {
     return (
         <div className="container">
