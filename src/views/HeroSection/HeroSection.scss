@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,600&display=swap');
+
+.container{
+    width: 1440px;
+    min-width: 1440px;
+    margin: 0 auto;
+    .hero-inner{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 170px;
+        height: 100vh;
+        .hero-content{
+            width: 50%;
+            margin: 0 auto; //centrado
+            color: #323232;
+            h1{
+                font-weight: 600;
+                font-size: 32px;
+                margin-bottom: 24px;
+                .hero-content-line{
+                    margin: 0;
+                    height: 44px;
+                    overflow: hidden;
+                }
+            }
+            p{
+                font-size: 14px;
+                line-height: 24px;
+                font-weight: 300;
+                padding-right: 48px;
+                margin-bottom: 56px;
+            }
+            .btn-row{
+                position: relative;
+                &:before{
+                    position: absolute;
+                    content: "";
+                    width: 56px;
+                    height: 3px;
+                    background: #dfdfdf;
+                    top: 50%;
+                    left: -65px;
+
+                }
+                .explore-btn{
+                    background: none;
+                    border: none;
+                    font-size: 12px;
+                    padding: 0;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    letter-spacing: 0.7px;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    &:focus{
+                        outline: none;
+                    }
+                    .right-circle{
+                        position: absolute;
+                        left: 85px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #007fff;
+                        font-size: 42px;
+                    }
+                }
+            }
+        }
+        .hero-images{
+            width: 50%;
+            height: 100vh;
+            position: relative;
+            .hero-images-inner{
+                .hero-image{
+                    position: absolute;
+                    overflow: hidden;
+                    &.joaco{
+                        top: 0;
+                        right: 0;
+                        width: 45%;
+                        height: 50%;
+                    }
+                    &.stefano{
+                        bottom: 24px;
+                        left: 0px;
+                        width: 52%;
+                        height: 65%;
+                    }
+                    img{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
