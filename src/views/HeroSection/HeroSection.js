@@ -5,6 +5,8 @@ import stefano from '../../images/stefano.jpg'
 import joaco from '../../images/joaco.jpg'
 import {gsap, Power3} from 'gsap';
 
+/* Link Interesante */
+//https://greensock.com/3-migration/
 
 const HeroSection = () => {
     let images = useRef(null);
@@ -13,22 +15,51 @@ const HeroSection = () => {
     useEffect(()=>{
         /* Hero Images */
         //variables de imágenes
-        const stefano = images.firstElementChild;
-        const joaco = images.lastElementChild;
+        const joaco = images.firstElementChild;
+        const stefano = images.lastElementChild;
         //console.log(images,joaco, stefano);
-        tl.from(joaco, {duration: 1.2, y:1280, ease: Power3.easeOut});
-        tl.from(joaco.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 1.2);// le da un zoom alto a menos
-        tl.from(stefano, {duration: 1.2, y:1280, ease: Power3.easeOut}, 0.2);
-        tl.from(stefano.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 0.8);// le da un zoom alto a menos
+        tl.from(joaco, {duration: 1.2, y:1280, ease: Power3.easeOut}, "Start");//target, duración, vertical 
+        tl.from(joaco.firstElementChild,{duration: 2, scale: 1.6, ease: Power3.easeOut, delay: 0.2});// le da un zoom alto a menos
+        tl.from(stefano, {duration: 1.2, y:1280, ease: Power3.easeOut, delay: 0.2});
+        tl.from(stefano.firstElementChild, {duration: 2, scale: 1.6, ease: Power3.easeOut, delay: 0.2});// le da un zoom alto a menos
         /* Hero-content */
-        const firstLine = content.children[0].children[0];
-        const secondLine = firstLine.nextSibling;
-        const thirdLine = secondLine.nextSibling;
-        //const contentP = content.children[1];
-        //const contentButton = content.children[2];
+        const firstLine = content.children[0].children[0];//para acceder a h1 => y luego el div
+        const secondLine = firstLine.nextSibling;// proximo hermano
+        //const thirdLine = secondLine.nextSibling;// proximo hermano
+        
+        const contentP = content.children[1];// para p tag
+        const contentButton = content.children[2];//para button tag
         //console.log(firstLine, secondLine, thirdLine, contentP, contentButton);
         //content animation
-        tl.staggerFrom([firstLine.children, secondLine.children, thirdLine.children], 1, {y:44, ease: Power3.easeOut, delay: .8})
+
+        tl.to(
+            [firstLine.children, secondLine.children], 
+            {
+                y: 40,
+                ease: "power3.easeOut", 
+                delay: 0.8,
+                //stagger: {each: 0.1, from:"center"},
+                stagger: 0.5,
+                duration: 1               
+            },
+            "Start"
+        )
+        tl.from(contentP, {duration: 1, y:20, opacity:0, ease: Power3.easeOut} ,0.4)
+        tl.from(contentButton, {duration: 1, y:20, opacity:0, ease: Power3.easeOut}, 0.4);
+        
+        /* gsap.to([firstLine.children, secondLine.children, thirdLine.children], 1, {
+            scale: 0.1, 
+            y: 60,
+            yoyo: true, 
+            repeat: -1, 
+            ease: "power1.inOut",
+            delay:1,
+            stagger: {
+              amount: 1.5, 
+              grid: "auto",
+              from: "center"
+            }
+          }); */
 
     },[tl])
 
@@ -60,11 +91,11 @@ const HeroSection = () => {
 
                 <div className="hero-images">
                     <div className="hero-images-inner" ref={el => images = el}>
-                        <div className="hero-image stefano">
-                            <img src={stefano} alt="stefanoImg"/>
-                        </div>
                         <div className="hero-image joaco">
                             <img src={joaco} alt="joacoImg"/>
+                        </div>
+                        <div className="hero-image stefano">
+                            <img src={stefano} alt="stefanoImg"/>
                         </div>
                     </div>
                 </div>
