@@ -8,6 +8,7 @@ import {gsap, Power3} from 'gsap';
 
 const HeroSection = () => {
     let images = useRef(null);
+    let content = useRef(null);
     let tl = gsap.timeline();
     useEffect(()=>{
         /* Hero Images */
@@ -19,12 +20,21 @@ const HeroSection = () => {
         tl.from(joaco.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 1.2);// le da un zoom alto a menos
         tl.from(stefano, {duration: 1.2, y:1280, ease: Power3.easeOut}, 0.2);
         tl.from(stefano.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 0.8);// le da un zoom alto a menos
-        
+        /* Hero-content */
+        const firstLine = content.children[0].children[0];
+        const secondLine = firstLine.nextSibling;
+        const thirdLine = secondLine.nextSibling;
+        //const contentP = content.children[1];
+        //const contentButton = content.children[2];
+        //console.log(firstLine, secondLine, thirdLine, contentP, contentButton);
+        //content animation
+        tl.staggerFrom([firstLine.children, secondLine.children, thirdLine.children], 1, {y:44, ease: Power3.easeOut, delay: .8})
+
     },[tl])
 
     return (
         <div className="container">
-            <div className="hero-inner">
+            <div className="hero-inner" ref={el => content = el}>
                 <div className="hero-content">
                     <h1>
                         <div className="hero-content-line">
