@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './HeroSection.scss';
 import { FiArrowRightCircle } from "react-icons/fi";
 import stefano from '../../images/stefano.jpg'
 import joaco from '../../images/joaco.jpg'
+import {gsap, Power3} from 'gsap';
+
+
 const HeroSection = () => {
+    let images = useRef(null);
+    let tl = gsap.timeline();
+    useEffect(()=>{
+        /* Hero Images */
+        //variables de imágenes
+        const stefano = images.firstElementChild;
+        const joaco = images.lastElementChild;
+        //console.log(images,joaco, stefano);
+        tl.from(joaco, {duration: 1.2, y:1280, ease: Power3.easeOut});
+        tl.from(joaco.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 1.2);// le da un zoom alto a menos
+        tl.from(stefano, {duration: 1.2, y:1280, ease: Power3.easeOut}, 0.2);
+        tl.from(stefano.firstElementChild, 2, {scale: 1.6, ease: Power3.easeOut}, 0.8);// le da un zoom alto a menos
+        
+    },[tl])
+
     return (
         <div className="container">
             <div className="hero-inner">
@@ -31,7 +49,7 @@ const HeroSection = () => {
                 </div>
 
                 <div className="hero-images">
-                    <div className="hero-images-inner">
+                    <div className="hero-images-inner" ref={el => images = el}>
                         <div className="hero-image stefano">
                             <img src={stefano} alt="stefanoImg"/>
                         </div>
